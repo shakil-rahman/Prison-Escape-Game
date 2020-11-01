@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    //Variable for the lerp speed and player position
     public Transform player;
-    public float dur = 0.1f;
+    public float dur = 0.01f;
 
-    // Update is called once per frame
+    //Moves the game Camera along with the player
     void LateUpdate()
     {
+        //Moves the Camera with lerp
         if(transform.position != player.position)
         {
             Vector3 playerPos = new Vector3(player.position.x, player.position.y, transform.position.z);
