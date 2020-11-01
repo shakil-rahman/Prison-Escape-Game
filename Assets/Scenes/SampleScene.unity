@@ -690,7 +690,7 @@ MonoBehaviour:
   cone: {fileID: 1576864771}
   speedX: -1
   speedY: 0
-  moveSpeed: 3
+  moveSpeed: 5
 --- !u!50 &217641372
 Rigidbody2D:
   serializedVersion: 4
@@ -830,7 +830,7 @@ MonoBehaviour:
   swap: 1
   start: 270
   end: 90
-  rotationSpeed: 0.4
+  rotationSpeed: 0.2
 --- !u!60 &226501700
 PolygonCollider2D:
   m_ObjectHideFlags: 0
