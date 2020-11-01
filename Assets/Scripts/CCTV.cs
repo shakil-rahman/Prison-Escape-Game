@@ -33,7 +33,8 @@ public class CCTV : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            Debug.Log("You have been caught!");
+            PlayerController player = collision.GetComponent<PlayerController>();
+            player.respawn();
         }
     }
 }

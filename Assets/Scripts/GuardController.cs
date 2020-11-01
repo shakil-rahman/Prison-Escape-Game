@@ -61,7 +61,8 @@ public class GuardController : MonoBehaviour
 
         if (collision.tag == "Player")
         {
-            Debug.Log("Guard Caught You!!!");
+            PlayerController player = collision.GetComponent<PlayerController>();
+            player.respawn();
         }
     }
 }

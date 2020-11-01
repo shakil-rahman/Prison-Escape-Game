@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,13 +9,16 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 6.5f;
     public Rigidbody2D rb;
     public Animator anim;
+    public Text winText;
 
     public static List<string> keys;
 
     Vector2 movement;
+    Vector3 start;
 
     private void Awake()
     {
+        start = rb.position;
         keys = new List<string>();
         keys.Add("Cell");
     }
@@ -35,6 +39,11 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
 
+    public void respawn()
+    {
+        rb.position = start;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Key key = collision.GetComponent<Key>();
@@ -50,6 +59,11 @@ public class PlayerController : MonoBehaviour
             {
                 door.OpenDoor();
             }
+        }
+        if(collision.gameObject.tag == "Win")
+        {
+            collision.gameObject.SetActive(false);
+            winText.text = "You win!";
         }
     }
 }
