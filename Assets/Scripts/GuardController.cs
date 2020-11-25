@@ -10,7 +10,10 @@ public class GuardController : MonoBehaviour
     public Transform cone;
     public float speedX;
     public float speedY;
+    private float oldSpeedX;
+    private float oldSpeedY;
     public float moveSpeed = 3f;
+    private bool directionChanged;
 
     //Vector to store movement
     private Vector2 movement;
@@ -26,7 +29,63 @@ public class GuardController : MonoBehaviour
         anim.SetFloat("speedX", speedX);
         anim.SetFloat("speedY", speedY);
         anim.SetFloat("speed", movement.sqrMagnitude);
+
+        if (directionChanged)
+        {
+            stopMovement();
+
+            if (speedX > 0)
+            {
+                cone.position = new Vector3(cone.position.x + 2, cone.position.y, cone.position.z);
+                cone.rotation = Quaternion.Euler(Vector3.forward * 0);
+            }
+            else if (speedX < 0)
+            {
+                cone.position = new Vector3(cone.position.x - 2, cone.position.y, cone.position.z);
+                cone.rotation = Quaternion.Euler(Vector3.forward * 180);
+            }
+            else if (speedY > 0)
+            {
+                cone.position = new Vector3(cone.position.x, cone.position.y + 2, cone.position.z);
+                cone.rotation = Quaternion.Euler(Vector3.forward * 90);
+            }
+            else if (speedY < 0)
+            {
+                cone.position = new Vector3(cone.position.x, cone.position.y - 2, cone.position.z);
+                cone.rotation = Quaternion.Euler(Vector3.forward * -90);
+            }
+            directionChanged = false;
+        }
     }
+
+    public void changeDirection(Vector2 newDir){
+        if (movement.Equals(newDir))
+            return;
+
+        oldSpeedX = speedX;
+        oldSpeedY = speedY;
+        speedX = newDir.x;
+        speedY = newDir.y;
+        directionChanged = true;
+    }
+
+    public void stopMovement()
+    {
+        if (oldSpeedX > 0)
+            cone.position = new Vector3(cone.position.x - 2, cone.position.y, cone.position.z);
+        else if(oldSpeedX < 0)
+            cone.position = new Vector3(cone.position.x + 2, cone.position.y, cone.position.z);
+        else if(oldSpeedY > 0)
+            cone.position = new Vector3(cone.position.x, cone.position.y - 2, cone.position.z);
+        else if(oldSpeedY < 0)
+            cone.position = new Vector3(cone.position.x, cone.position.y + 2, cone.position.z);
+    }
+
+    public Vector2 getMovement()
+    {
+        return movement;
+    }
+  
 
     //Moves the guard at a constant rate
     void FixedUpdate()
@@ -37,34 +96,6 @@ public class GuardController : MonoBehaviour
     //Triggered when player enters another collider
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //This controls the bounce effect where the guard turns 180 degrees
-        if (collision.tag == "Wall")
-        {
-            //Moves the cone of vision and the guard based on the direction they are already moving
-            if (speedX < 0)
-            {
-                cone.position = new Vector3(cone.position.x + 4, cone.position.y, cone.position.z);
-                cone.rotation = Quaternion.Euler(Vector3.forward * 0);
-            }
-            else if (speedX > 0)
-            {
-                cone.position = new Vector3(cone.position.x - 4, cone.position.y, cone.position.z);
-                cone.rotation = Quaternion.Euler(Vector3.forward * 180);
-            }
-            else if (speedY < 0)
-            {
-                cone.position = new Vector3(cone.position.x, cone.position.y + 4, cone.position.z);
-                cone.rotation = new Quaternion(cone.rotation.x, cone.rotation.y, -cone.rotation.z, cone.rotation.w);
-            }
-            else if (speedY > 0)
-            {
-                cone.position = new Vector3(cone.position.x, cone.position.y - 4, cone.position.z);
-                cone.rotation = new Quaternion(cone.rotation.x, cone.rotation.y, -cone.rotation.z, cone.rotation.w);
-            }
-            //Changes the speed to move in the opposite direction
-            speedX = -speedX;
-            speedY = -speedY;
-        }
         //If the cone finds the player then they are sent to start
         if (collision.tag == "Player")
         {
