@@ -9,8 +9,6 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 6.5f;
     public Rigidbody2D rb;
     public Animator anim;
-    //Stores text that appears when you win
-    public Text winText;
     //Store all the keys collected
     public static List<string> keys;
     //Vectors to store location and movement
@@ -69,12 +67,6 @@ public class PlayerController : MonoBehaviour
             {
                 door.OpenDoor();
             }
-        }
-        //Checks if we entered the victory area and displays the message if we have
-        if(collision.gameObject.tag == "Win")
-        {
-            collision.gameObject.SetActive(false);
-            winText.text = "You win!";
         }
     }
 }
