@@ -15,14 +15,10 @@ public class Waypoint : MonoBehaviour
     {
         directionsAllowed = new List<Vector2>();
 
-        if (up)
-            directionsAllowed.Add(new Vector2(0f, 1f));
-        if (down)
-            directionsAllowed.Add(new Vector2(0f, -1f));
-        if (left)
-            directionsAllowed.Add(new Vector2(-1f, 0f));
-        if (right)
-            directionsAllowed.Add(new Vector2(1f, 0f));
+        if (up){directionsAllowed.Add(new Vector2(0f, 1f));}
+        if (down){directionsAllowed.Add(new Vector2(0f, -1f));}
+        if (left){directionsAllowed.Add(new Vector2(-1f, 0f));}
+        if (right){directionsAllowed.Add(new Vector2(1f, 0f));}
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,8 +26,16 @@ public class Waypoint : MonoBehaviour
         if (collision.tag == "Guard")
         {
             GuardController guard = collision.GetComponent<GuardController>();
+            if (directionsAllowed.Count == 1){
+                guard.changeDirection(directionsAllowed[0]); // Only one option so no need to randomise
+                return;
+            }
             Vector2 currentDir = guard.getMovement();
-            Vector2 newDir = directionsAllowed[Random.Range(0, directionsAllowed.Count)];
+            // Duplicate list so it doesn't remove from the main one
+            List<Vector2> choices = new List<Vector2>(directionsAllowed);
+            // Prevent Guards doing a U-turn at a junction
+            choices.Remove(currentDir * -1);
+            Vector2 newDir = choices[Random.Range(0, choices.Count)];
             guard.changeDirection(newDir);
         }
     }
