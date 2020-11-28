@@ -8,5 +8,9 @@ By Adarsh S
 
 
 I used this audio clip for the door sound effect
-src: https://www.freesoundeffects.com/free-track/creaky-door-4-426728/
+Source: https://www.freesoundeffects.com/free-track/creaky-door-4-426728/
 By Partners In Rhyme
+
+I used this audio clip for the title screen / main menu
+Source: https://www.youtube.com/watch?v=cruUdc1Sd4w&ab_channel=TerminoRimkus
+By TerminoRimkus
