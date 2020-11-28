@@ -7,6 +7,7 @@ public class Door : MonoBehaviour
     //Variable for the value of the door
     public string doorType;
     private Vector3 open;
+  
     //Check if we need to continue opening the door
     private bool cont = false;
 
@@ -25,9 +26,12 @@ public class Door : MonoBehaviour
     //Only opens the door when E is pressed
     private void LateUpdate()
     {
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             cont = true;
+
+
         }
         if (transform.position != open && cont)
         {
@@ -37,6 +41,7 @@ public class Door : MonoBehaviour
         if (transform.position == open)
         {
             cont = false;
+
         }
     }
 }
