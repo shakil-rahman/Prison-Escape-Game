@@ -14,3 +14,9 @@ By Partners In Rhyme
 I used this audio clip for the title screen / main menu
 Source: https://www.youtube.com/watch?v=cruUdc1Sd4w&ab_channel=TerminoRimkus
 By TerminoRimkus
+
+
+I used this audio clip for the walking sound
+Title: 01-Man walking concrete.wav
+Source :https://freesound.org/people/14GPanskaHonc_Petr/sounds/419166/
+By 14GPanskaHonc_Petr
