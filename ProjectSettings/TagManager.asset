@@ -8,6 +8,8 @@ TagManager:
   - Win
   - Guard
   - Waypoint
+  - GuardBack
+  - DeadGuard
   layers:
   - Default
   - TransparentFX
