@@ -26,12 +26,9 @@ public class Door : MonoBehaviour
     //Only opens the door when E is pressed
     private void LateUpdate()
     {
-
         if (Input.GetKeyDown(KeyCode.E))
         {
             cont = true;
-
-
         }
         if (transform.position != open && cont)
         {

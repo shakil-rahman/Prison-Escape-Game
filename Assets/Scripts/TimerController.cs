@@ -7,17 +7,30 @@ public class TimerController : MonoBehaviour
 {
     public float time;
     Text textTime;
+    public bool pausedTimer;
 
     // Start is called before the first frame update
     void Start()
     {
+        pausedTimer = false;
         textTime = GetComponent<Text>();
+    }
+
+    public void PauseTimer()
+    {
+        pausedTimer = true;
+    }
+
+    public void ResumeTimer()
+    {
+        pausedTimer = false;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        time -= Time.deltaTime;
+        if (!pausedTimer)
+            time -= Time.deltaTime;
         if(time < 0)
         {
             time = 0;
