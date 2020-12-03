@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     Vector2 movement;
     Vector3 start;
 
+    public AudioSource walkingsound;
+
     //Stores start position and adds "Cell" door
     private void Awake()
     {
@@ -30,6 +32,18 @@ public class PlayerController : MonoBehaviour
         //Retrieves the movement value on x and y axis
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+
+        if(Input.GetKeyDown("w") || Input.GetKeyDown("s") || Input.GetKeyDown("a")|| Input.GetKeyDown("d"))
+        {
+          walkingsound.Play();
+
+        }
+
+        else if(Input.GetKeyUp("w")||Input.GetKeyUp("a")||Input.GetKeyUp("s")||Input.GetKeyUp("d"))
+        {
+          walkingsound.Stop();
+        }
+
 
         //Changes the animation based on the movement value
         anim.SetFloat("speedX", movement.x);
