@@ -15,7 +15,7 @@ public class DialogueManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        index = 0;
+        index = -1;
         onDialogue = false;
     }
 
@@ -37,10 +37,14 @@ public class DialogueManager : MonoBehaviour
     {
         if (onDialogue)
         {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Continue();
+            }
             if (index >= currentSentences.Length)
             {
-                index = 0;
-                onDialogue = false; 
+                index = -1;
+                onDialogue = false;
             }
             else {
                 dialogue.text = "" + currentSentences[index];
