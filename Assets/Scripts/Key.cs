@@ -6,6 +6,7 @@ public class Key : MonoBehaviour
 {
     //Variable for the value of the key
     public string keyType = "";
+    public int points;
 
     //Returns the value of the key
     public string getKeyType()

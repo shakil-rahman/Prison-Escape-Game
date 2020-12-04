@@ -73,6 +73,7 @@ public class PlayerController : MonoBehaviour
         if (key != null)
         {
             keys.Add(key.getKeyType());
+            ScoreManager.addPoints(key.points);
             Destroy(key.gameObject);
         }
         // Checks if we have the key for the door and opens it if we do
