@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6856217147894127788}
   - component: {fileID: 6856217147894127791}
   - component: {fileID: 6856217147894127790}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: ConeVision
   m_TagString: GuardBack
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 6856217148237912115}
   - component: {fileID: 6856217148237912114}
   - component: {fileID: 6856217148237912125}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Guard
   m_TagString: Guard
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 6856217149407348246}
   - component: {fileID: 6856217149407348241}
   - component: {fileID: 6856217149407348240}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: GuardBack
   m_TagString: GuardBack
   m_Icon: {fileID: 0}
@@ -366,6 +366,7 @@ MonoBehaviour:
   cone: {fileID: 6856217147894127778}
   deathParticle: {fileID: 1084393918994208923, guid: cce04d9eb83c76e4cb31e90d06ca29dd,
     type: 3}
+  points: 100
 --- !u!1001 &6856217148475471976
 PrefabInstance:
   m_ObjectHideFlags: 0

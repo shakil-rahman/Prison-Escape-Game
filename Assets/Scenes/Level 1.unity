@@ -425,6 +425,7 @@ MonoBehaviour:
   sentences:
   - This is my first sentence
   - This is my second sentence
+  damage: 0
 --- !u!1 &69745318
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,8 +1016,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sentences:
-  - Different First Sentence
-  - Different Second Sentence
+  - Who do you think you are looking at?
+  damage: 1
 --- !u!58 &167650945
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2321,6 +2322,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guard (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6856217148237912125, guid: 6400ccf1a54674a4c95fb94f813307d5,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6856217149407348246, guid: 6400ccf1a54674a4c95fb94f813307d5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3303,6 +3309,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guard
       objectReference: {fileID: 0}
+    - target: {fileID: 6856217148237912125, guid: 6400ccf1a54674a4c95fb94f813307d5,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6400ccf1a54674a4c95fb94f813307d5, type: 3}
 --- !u!1 &718670600
@@ -3938,6 +3949,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Guard (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6856217148237912125, guid: 6400ccf1a54674a4c95fb94f813307d5,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6400ccf1a54674a4c95fb94f813307d5, type: 3}

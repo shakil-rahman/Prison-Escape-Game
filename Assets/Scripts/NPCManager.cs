@@ -6,10 +6,13 @@ public class NPCManager : MonoBehaviour
 {
     public string[] sentences;
     private bool inTrigger;
+    public int damage;
+    private bool damagedPlayer;
 
     // Start is called before the first frame update
     void Start()
     {
+        damagedPlayer = false;
         inTrigger = false;
     }
 
@@ -18,6 +21,11 @@ public class NPCManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && inTrigger)
         {
             FindObjectOfType<DialogueManager>().StartDialogue(sentences);
+            if (!damagedPlayer)
+            {
+                HealthManager.damage(damage);
+                damagedPlayer = true;
+            }            
         }
     }
 
