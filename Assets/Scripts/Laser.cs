@@ -27,6 +27,7 @@ public class Laser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(damaging);
         timeGap += Time.fixedDeltaTime;
         if(timeGap > activeLength)
         {
