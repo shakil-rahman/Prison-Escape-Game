@@ -12,6 +12,7 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         textScore = GetComponent<Text>();
+        score = PlayerPrefs.GetInt("Score");
     }
 
     // Update is called once per frame

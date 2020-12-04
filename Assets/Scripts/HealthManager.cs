@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
 {
-    public int startHealth;
     public static int playerHealth;
     Text textHealth;
 
@@ -13,7 +12,7 @@ public class HealthManager : MonoBehaviour
     void Start()
     {
         textHealth = GetComponent<Text>();
-        playerHealth = startHealth;
+        playerHealth = PlayerPrefs.GetInt("Health");
     }
 
     // Update is called once per frame

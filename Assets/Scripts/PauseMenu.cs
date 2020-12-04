@@ -39,6 +39,11 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
     }
 
+    public void Restart()
+    {
+        SceneManager.LoadScene(PlayerPrefs.GetString("Level"));
+    }
+
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene(mainMenu);

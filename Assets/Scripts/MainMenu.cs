@@ -5,8 +5,31 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void PlayGame() {
-        SceneManager.LoadScene("SampleScene");
+    public string startLevel;
+    private string loadLevel;
+    public int startHealth;
+
+    public void PlayGame()
+    {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetInt("Score", 0);
+        PlayerPrefs.SetInt("Health", startHealth);
+        PlayerPrefs.SetString("Level", startLevel);
+        SceneManager.LoadScene(startLevel);
+    }
+
+    public void LoadLevel()
+    {
+        if (PlayerPrefs.HasKey("Level"))
+        {
+            loadLevel = PlayerPrefs.GetString("Level");
+            SceneManager.LoadScene(loadLevel);
+        }
+    }
+
+    public void HowToPlay()
+    {
+
     }
 
     public void ExitGame()
