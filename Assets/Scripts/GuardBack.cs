@@ -7,6 +7,7 @@ public class GuardBack : MonoBehaviour
     private bool attackable = false;
     public GuardController parent;
     public GameObject cone;
+    public GameObject deathParticle;
 
     void Update()
     {
@@ -16,6 +17,7 @@ public class GuardBack : MonoBehaviour
             {
                 parent.isDead = true;
                 parent.gameObject.tag = "DeadGuard";
+                Instantiate(deathParticle, parent.transform.position, parent.transform.rotation);
                 parent.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
                 Destroy(cone);
             }

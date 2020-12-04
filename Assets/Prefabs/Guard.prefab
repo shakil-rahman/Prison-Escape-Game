@@ -364,6 +364,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 6856217148237912114}
   cone: {fileID: 6856217147894127778}
+  deathParticle: {fileID: 1084393918994208923, guid: cce04d9eb83c76e4cb31e90d06ca29dd,
+    type: 3}
 --- !u!1001 &6856217148475471976
 PrefabInstance:
   m_ObjectHideFlags: 0
