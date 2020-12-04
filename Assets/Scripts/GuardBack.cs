@@ -8,17 +8,19 @@ public class GuardBack : MonoBehaviour
     public GuardController parent;
     public GameObject cone;
     public GameObject deathParticle;
+    public int points;
 
     void Update()
     {
         if (attackable)
         {
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.R) && !parent.isDead)
             {
                 parent.isDead = true;
                 parent.gameObject.tag = "DeadGuard";
                 Instantiate(deathParticle, parent.transform.position, parent.transform.rotation);
                 parent.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+                ScoreManager.addPoints(points);
                 Destroy(cone);
             }
         }
@@ -26,7 +28,8 @@ public class GuardBack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        attackable = true;
+        if(collision.tag == "Player")
+            attackable = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)

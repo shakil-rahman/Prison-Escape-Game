@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class TimerController : MonoBehaviour
 {
     public float time;
+    public static float publicTime;
     Text textTime;
     public bool pausedTimer;
 
@@ -36,5 +37,11 @@ public class TimerController : MonoBehaviour
             time = 0;
         }
         textTime.text = time.ToString("0");
+        publicTime = time;
+    }
+
+    public static int getTime()
+    {
+        return (int)publicTime;
     }
 }

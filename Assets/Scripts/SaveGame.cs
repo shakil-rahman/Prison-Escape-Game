@@ -11,6 +11,8 @@ public class SaveGame : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
+            ScoreManager.addPoints(TimerController.getTime() * 10);
+            Debug.Log(ScoreManager.score);
             Save();
             SceneManager.LoadScene(nextLevel);
         }
