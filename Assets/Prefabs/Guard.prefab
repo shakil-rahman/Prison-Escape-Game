@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3286630308538995685}
   m_Layer: 0
   m_Name: AttackRadius
-  m_TagString: AttackRadius
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61,7 +61,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 6856217148237912114}
-  radius: {fileID: 1588860550354395273}
 --- !u!1 &6856217147894127778
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,23 +6,9 @@ public class GuardAttack : MonoBehaviour
 {
     // References to game objects
     public GuardController parent;
-    public GameObject radius;
     // Coroutine for damage
     private IEnumerator coroutine;
     private bool damaging = false;
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (parent.isAlerted)
-        {
-            gameObject.SetActive(true);
-        }
-        else
-        {
-            gameObject.SetActive(true);
-        }
-    }
 
     private void OnTriggerStay2D(Collider2D collision)
     {

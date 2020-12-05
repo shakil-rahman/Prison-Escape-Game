@@ -45,12 +45,34 @@ public class GuardController : MonoBehaviour
         else if (isAlerted)
         {
             cone.gameObject.SetActive(false);
+            timeAlerted += Time.fixedDeltaTime;
             Vector2 guardLoc = gameObject.transform.position;
             Vector2 playerLoc = GameObject.FindWithTag("Player").transform.position;
-            Vector2 dirToPlayer = (playerLoc - guardLoc).normalized;
-            changeDirection(dirToPlayer);
-            speedX = dirToPlayer.x * 1.5f;
-            speedY = dirToPlayer.y * 1.5f;
+            // If guard is too far and has been alert for long enough, disengage
+            if ((timeAlerted > alertLength) && ((playerLoc - guardLoc).sqrMagnitude > 8f))
+            {
+                // Reset timer and alert status
+                isAlerted = !isAlerted;
+                timeAlerted = 0;
+                cone.gameObject.SetActive(true);
+                // Stop guard so they can find the nearest waypoint
+                speedX = 0f;
+                speedY = 0f;
+                // Head towards nearest waypoint
+                Vector2 way = GetNearest.nearest(guardLoc, "Waypoint").transform.position;
+                Vector2 dirToWaypoint = (way - guardLoc).normalized;
+                changeDirection(dirToWaypoint);
+                speedX = dirToWaypoint.x * 1.5f;
+                speedY = dirToWaypoint.y * 1.5f;
+            }
+            else
+            {
+                // Head towards player
+                Vector2 dirToPlayer = (playerLoc - guardLoc).normalized;
+                changeDirection(dirToPlayer);
+                speedX = dirToPlayer.x * 1.5f;
+                speedY = dirToPlayer.y * 1.5f;
+            }
         }
             movement.x = speedX;
             movement.y = speedY;
@@ -75,21 +97,22 @@ public class GuardController : MonoBehaviour
 
     public void stopMovement()
     {
+        Vector2 guardLoc = gameObject.transform.position;
         if (oldSpeedX > 0){
-            cone.position = new Vector3(cone.position.x - 2, cone.position.y, cone.position.z);
-            back.position = new Vector3(back.position.x - 2, back.position.y, back.position.z);
+            cone.position = new Vector3(guardLoc.x - 2, guardLoc.y, 0);
+            back.position = new Vector3(guardLoc.x - 2, guardLoc.y, 0);
         }
         else if(oldSpeedX < 0){
-            cone.position = new Vector3(cone.position.x + 2, cone.position.y, cone.position.z);
-            back.position = new Vector3(back.position.x + 2, back.position.y, back.position.z);
+            cone.position = new Vector3(guardLoc.x + 2, guardLoc.y, 0);
+            back.position = new Vector3(guardLoc.x + 2, guardLoc.y, 0);
         }
         else if(oldSpeedY > 0){
-            cone.position = new Vector3(cone.position.x, cone.position.y - 2, cone.position.z);
-            back.position = new Vector3(back.position.x, back.position.y - 2, back.position.z);
+            cone.position = new Vector3(guardLoc.x, guardLoc.y - 2, 0);
+            back.position = new Vector3(guardLoc.x, guardLoc.y - 2, 0);
         }
         else if(oldSpeedY < 0){
-            cone.position = new Vector3(cone.position.x, cone.position.y + 2, cone.position.z);
-            back.position = new Vector3(back.position.x, back.position.y + 2, back.position.z);
+            cone.position = new Vector3(guardLoc.x, guardLoc.y + 2, 0);
+            back.position = new Vector3(guardLoc.x, guardLoc.y + 2, 0);
         }
     }
 
@@ -107,32 +130,33 @@ public class GuardController : MonoBehaviour
     // Rotate vision cone when guard changes direction
     private void rotateCone()
     {
+        Vector2 guardLoc = gameObject.transform.position;
         if (directionChanged)
         {
             stopMovement();
 
             if (speedX > 0){
-                cone.position = new Vector3(cone.position.x + 2, cone.position.y, cone.position.z);
+                cone.position = new Vector3(guardLoc.x + 2, guardLoc.y, 0);
                 cone.rotation = Quaternion.Euler(Vector3.forward * 0);
-                back.position = new Vector3(back.position.x + 2, back.position.y, back.position.z);
+                back.position = new Vector3(guardLoc.x + 2, guardLoc.y, 0);
                 back.rotation = Quaternion.Euler(Vector3.forward * 0);
             }
             else if (speedX < 0){
-                cone.position = new Vector3(cone.position.x - 2, cone.position.y, cone.position.z);
+                cone.position = new Vector3(guardLoc.x - 2, guardLoc.y, 0);
                 cone.rotation = Quaternion.Euler(Vector3.forward * 180);
-                back.position = new Vector3(back.position.x - 2, back.position.y, back.position.z);
+                back.position = new Vector3(guardLoc.x - 2, guardLoc.y, 0);
                 back.rotation = Quaternion.Euler(Vector3.forward * 180);
             }
             else if (speedY > 0){
-                cone.position = new Vector3(cone.position.x, cone.position.y + 2, cone.position.z);
+                cone.position = new Vector3(guardLoc.x, guardLoc.y + 2, 0);
                 cone.rotation = Quaternion.Euler(Vector3.forward * 90);
-                back.position = new Vector3(back.position.x, back.position.y + 2, back.position.z);
+                back.position = new Vector3(guardLoc.x, guardLoc.y + 2, 0);
                 back.rotation = Quaternion.Euler(Vector3.forward * 90);
             }
             else if (speedY < 0){
-                cone.position = new Vector3(cone.position.x, cone.position.y - 2, cone.position.z);
+                cone.position = new Vector3(guardLoc.x, guardLoc.y - 2, 0);
                 cone.rotation = Quaternion.Euler(Vector3.forward * -90);
-                back.position = new Vector3(back.position.x, back.position.y - 2, back.position.z);
+                back.position = new Vector3(guardLoc.x, guardLoc.y - 2, 0);
                 back.rotation = Quaternion.Euler(Vector3.forward * -90);
             }
             directionChanged = false;
@@ -142,7 +166,7 @@ public class GuardController : MonoBehaviour
     // Prevents collision with other guards
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Guard" && isAlerted)
+        if (collision.tag == "Guard" && !isAlerted)
         {
             changeDirection(movement *-1);
         }

@@ -24,3 +24,7 @@ https://arongranberg.com/astar/
 https://www.youtube.com/watch?v=jvtFUfJ6CP8
 Algorithm by Aron Granberg
 Tutorial by Brackeys
+
+I used this to detect the nearest object:
+https://answers.unity.com/questions/1236558/finding-nearest-game-object.html
+By b1gry4n
