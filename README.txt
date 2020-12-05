@@ -20,3 +20,9 @@ I used this audio clip for the walking sound
 Title: 01-Man walking concrete.wav
 Source :https://freesound.org/people/14GPanskaHonc_Petr/sounds/419166/
 By 14GPanskaHonc_Petr
+
+
+I used this audio clip for when the player collects the key
+Title : Ping.wav
+Source: https://freesound.org/people/edsward/sounds/341871/
+By Edsward
