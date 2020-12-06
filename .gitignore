@@ -33,3 +33,7 @@ crashlytics-build.properties
 /[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+/[Aa]ssets/AstarPathfindingProject/**/*.meta
+[Aa]ssets/AstarPathfindingProject/*/*.cs.meta
+/[Aa]ssets/AstarPathfindingProject/*.meta
+[Aa]ssets/AstarPathfindingProject/Editor

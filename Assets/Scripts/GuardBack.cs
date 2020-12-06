@@ -18,6 +18,7 @@ public class GuardBack : MonoBehaviour
             {
                 parent.isDead = true;
                 parent.gameObject.tag = "DeadGuard";
+                parent.gameObject.layer = 0;
                 Instantiate(deathParticle, parent.transform.position, parent.transform.rotation);
                 parent.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
                 ScoreManager.addPoints(points);

@@ -30,11 +30,14 @@ public class CCTV : MonoBehaviour
     // Triggered when something enters the CCTV cone of vision
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // If the cone finds the player then they are sent to start
+        // If the cone finds the player then alert all guards
         if (collision.tag == "Player")
         {
-            PlayerController player = collision.GetComponent<PlayerController>();
-            player.respawn();
+            GameObject[] guardsArr = GameObject.FindGameObjectsWithTag("Guard");
+            foreach(GameObject guard in guardsArr)
+            {
+                guard.GetComponent<GuardController>().isAlerted = true;
+            }
         }
     }
 }
