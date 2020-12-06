@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
         movement.y = Input.GetAxisRaw("Vertical");
 
         // Plays footstep sound if moving
-        if(movement.x != 0 || movement.y != 0)
+        if(movement.x != 0 || movement.y != 0 && Time.timeScale > 0f)
         {
             // Prevents sound from overlapping
             if(!walkingsound.isPlaying)
@@ -75,16 +75,15 @@ public class PlayerController : MonoBehaviour
         {
             keys.Add(key.getKeyType());
             ScoreManager.addPoints(key.points);
-            itemSoundManager.soundMan.PlayKeyCollectSound();
             Destroy(key.gameObject);
+            itemSoundManager.soundMan.PlayKeyCollectSound();
         }
         // Checks if we have the key for the door and opens it if we do
         Door door = collision.GetComponent<Door>();
         if (door != null)
         {
             if (keys.Contains(door.getDoorType()))
-            {
-              
+            { 
                 door.OpenDoor();
             }
         }

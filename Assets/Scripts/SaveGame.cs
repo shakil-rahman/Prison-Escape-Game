@@ -2,20 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SaveGame : MonoBehaviour
 {
     public string nextLevel;
+    public GameObject levelComplete;
+    public Text score;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Player")
         {
+            ScoreManager.addPoints(HealthManager.playerHealth * 10);
             ScoreManager.addPoints(TimerController.getTime() * 10);
-            Debug.Log(ScoreManager.score);
+            levelComplete.SetActive(true);
+            score.text = "Score: " + ScoreManager.score;
             Save();
-            SceneManager.LoadScene(nextLevel);
         }
+    }
+
+    public void loadNextLevel()
+    {
+        SceneManager.LoadScene(nextLevel);
     }
 
     public void Save()
