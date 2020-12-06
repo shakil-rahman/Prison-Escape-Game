@@ -28,3 +28,8 @@ Tutorial by Brackeys
 I used this to detect the nearest object:
 https://answers.unity.com/questions/1236558/finding-nearest-game-object.html
 By b1gry4n
+
+I used this audio clip for when the player collects the key
+Title : Ping.wav
+Source: https://freesound.org/people/edsward/sounds/341871/
+By Edsward
