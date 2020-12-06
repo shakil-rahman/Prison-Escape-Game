@@ -24,9 +24,8 @@ public class GuardController : MonoBehaviour
     public bool isAlerted;
 
     // Length of time before guard stops being alert
-    public float alertLength;
+    private float alertLength = 10f;
     private float timeAlerted = 0;
-    public float range;
 
     // Vector to store movement
     private Vector2 movement;
@@ -54,7 +53,7 @@ public class GuardController : MonoBehaviour
             Vector2 guardLoc = gameObject.transform.position;
             Vector2 playerLoc = GameObject.FindWithTag("Player").transform.position;
             // If guard is too far and has been alert for long enough, disengage
-            if ((timeAlerted > alertLength) && ((playerLoc - guardLoc).sqrMagnitude > range))
+            if ((timeAlerted > alertLength) && ((playerLoc - guardLoc).sqrMagnitude > 8f))
             {
                 // Reset timer and alert status
                 isAlerted = false;
@@ -62,8 +61,8 @@ public class GuardController : MonoBehaviour
                 // Stop guard so they can find the nearest waypoint
                 speedX = 0f;
                 speedY = 0f;
-                // Head towards nearest waypoint from player
-                Vector2 way = GetNearest.nearest(playerLoc, "Waypoint").transform.position;
+                // Head towards nearest waypoint
+                Vector2 way = GetNearest.nearest(guardLoc, "Waypoint").transform.position;
                 Vector2 dirToWaypoint = (way - guardLoc).normalized;
                 cone.gameObject.SetActive(true);
                 changeDirection(dirToWaypoint);
