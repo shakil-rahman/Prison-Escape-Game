@@ -9,6 +9,7 @@ public class HealthManager : MonoBehaviour
     Text textHealth;
     public GameObject gameOver;
     public Text gameOverScore;
+    public PauseMenu pause;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,7 @@ public class HealthManager : MonoBehaviour
         {
             playerHealth = 0;
             PlayerPrefs.DeleteAll();
+            pause.Pause();
             gameOver.SetActive(true);
             gameOverScore.text = "Score: " + ScoreManager.score;
         }

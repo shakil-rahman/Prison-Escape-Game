@@ -29,7 +29,7 @@ public class MainMenu : MonoBehaviour
 
     public void HowToPlay()
     {
-
+        SceneManager.LoadScene("Controls");
     }
 
     public void ExitGame()

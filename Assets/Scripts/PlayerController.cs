@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
         movement.y = Input.GetAxisRaw("Vertical");
 
         // Plays footstep sound if moving
-        if(movement.x != 0 || movement.y != 0 && Time.timeScale > 0f)
+        if(movement.x != 0 || movement.y != 0)
         {
             // Prevents sound from overlapping
             if(!walkingsound.isPlaying)

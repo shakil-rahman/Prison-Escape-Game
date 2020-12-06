@@ -12,7 +12,7 @@ public class GuardAttack : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (parent.isAlerted && collision.tag == "Player")
+        if (parent.isAlerted && collision.tag == "Player" && !parent.isDead)
         {
             coroutine = guardDamage();
             StartCoroutine(coroutine);

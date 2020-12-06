@@ -9,11 +9,13 @@ public class SaveGame : MonoBehaviour
     public string nextLevel;
     public GameObject levelComplete;
     public Text score;
+    public PauseMenu pause;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Player")
         {
+            pause.Pause();
             ScoreManager.addPoints(HealthManager.playerHealth * 10);
             ScoreManager.addPoints(TimerController.getTime() * 10);
             levelComplete.SetActive(true);

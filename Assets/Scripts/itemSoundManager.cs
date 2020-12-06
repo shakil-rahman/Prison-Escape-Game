@@ -15,11 +15,6 @@ public class itemSoundManager : MonoBehaviour
         pingsound = Resources.LoadAll<AudioClip>("PingSound");
     }
 
-    public AudioSource getSound()
-    {
-        return audioSrc;
-    }
-
     public void PlayKeyCollectSound()
     {
         audioSrc.PlayOneShot(pingsound[0]);
