@@ -7,6 +7,7 @@ public class itemSoundManager : MonoBehaviour
     public static itemSoundManager soundMan;
     private AudioSource  audioSrc;
     private AudioClip[] pingsound;
+
     // Start is called before the first frame update
     void Start()
     {

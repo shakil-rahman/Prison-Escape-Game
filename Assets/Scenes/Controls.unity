@@ -195,15 +195,16 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Movement: WASD and Arrow Keys
 
-
     Interaction Key: E
-
 
     Attack: R
 
-
     Pause
-    Menu: ESC and P'
+    Menu: ESC and P
+
+
+    Avoid the Guard and Camera cones of vision as they will
+    alert them of your escape.'
 --- !u!222 &389474285
 CanvasRenderer:
   m_ObjectHideFlags: 0
