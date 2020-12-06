@@ -344,6 +344,8 @@ MonoBehaviour:
   moveSpeed: 3
   isDead: 0
   isAlerted: 0
+  alertLength: 20
+  range: 20
 --- !u!58 &6856217148237912125
 CircleCollider2D:
   m_ObjectHideFlags: 0
