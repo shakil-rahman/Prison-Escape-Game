@@ -35,6 +35,7 @@ public class TimerController : MonoBehaviour
         if(time < 0)
         {
             time = 0;
+            HealthManager.damage(1000000000);
         }
         textTime.text = time.ToString("0");
         publicTime = time;
