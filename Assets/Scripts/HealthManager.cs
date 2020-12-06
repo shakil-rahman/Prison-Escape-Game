@@ -35,6 +35,7 @@ public class HealthManager : MonoBehaviour
     public static void damage(int amount)
     {
         playerHealth -= amount;
+        itemSoundManager.soundMan.PlayPunchSound();
     }
 
     public static void addHealth(int amount)

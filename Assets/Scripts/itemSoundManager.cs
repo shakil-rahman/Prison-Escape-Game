@@ -20,4 +20,9 @@ public class itemSoundManager : MonoBehaviour
     {
         audioSrc.PlayOneShot(pingsound[0]);
     }
+
+    public void PlayPunchSound()
+    {
+      audioSrc.PlayOneShot(pingsound[1]);
+    }
 }
