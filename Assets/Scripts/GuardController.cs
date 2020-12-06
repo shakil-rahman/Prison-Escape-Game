@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class GuardController : MonoBehaviour
 {
+    // Reference to pathfinder
+    public AIPath path;
+
     // Variables for movement and animation
     public Rigidbody2D rb;
     public Animator anim;
@@ -52,15 +56,15 @@ public class GuardController : MonoBehaviour
             if ((timeAlerted > alertLength) && ((playerLoc - guardLoc).sqrMagnitude > 8f))
             {
                 // Reset timer and alert status
-                isAlerted = !isAlerted;
+                isAlerted = false;
                 timeAlerted = 0;
-                cone.gameObject.SetActive(true);
                 // Stop guard so they can find the nearest waypoint
                 speedX = 0f;
                 speedY = 0f;
                 // Head towards nearest waypoint
                 Vector2 way = GetNearest.nearest(guardLoc, "Waypoint").transform.position;
                 Vector2 dirToWaypoint = (way - guardLoc).normalized;
+                cone.gameObject.SetActive(true);
                 changeDirection(dirToWaypoint);
                 speedX = dirToWaypoint.x * 1.5f;
                 speedY = dirToWaypoint.y * 1.5f;
@@ -68,14 +72,14 @@ public class GuardController : MonoBehaviour
             else
             {
                 // Head towards player
-                Vector2 dirToPlayer = (playerLoc - guardLoc).normalized;
+                Vector2 dirToPlayer = path.desiredVelocity.normalized;
                 changeDirection(dirToPlayer);
                 speedX = dirToPlayer.x * 1.5f;
                 speedY = dirToPlayer.y * 1.5f;
             }
         }
-            movement.x = speedX;
-            movement.y = speedY;
+        movement.x = speedX;
+        movement.y = speedY;
 
         // Changes the animation based on the movement value
         anim.SetFloat("speedX", speedX);
@@ -160,15 +164,6 @@ public class GuardController : MonoBehaviour
                 back.rotation = Quaternion.Euler(Vector3.forward * -90);
             }
             directionChanged = false;
-        }
-    }
-
-    // Prevents collision with other guards
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Guard" && !isAlerted)
-        {
-            changeDirection(movement *-1);
         }
     }
 }
