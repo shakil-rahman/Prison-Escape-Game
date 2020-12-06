@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     Vector3 start;
 
     public AudioSource walkingsound;
+    public AudioClip keySound;
 
     // Stores start position and adds "Cell" door
     private void Awake()
@@ -74,6 +75,7 @@ public class PlayerController : MonoBehaviour
         {
             keys.Add(key.getKeyType());
             ScoreManager.addPoints(key.points);
+            itemSoundManager.soundMan.PlayKeyCollectSound();
             Destroy(key.gameObject);
         }
         // Checks if we have the key for the door and opens it if we do
@@ -82,6 +84,7 @@ public class PlayerController : MonoBehaviour
         {
             if (keys.Contains(door.getDoorType()))
             {
+              
                 door.OpenDoor();
             }
         }
