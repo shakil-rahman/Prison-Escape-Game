@@ -44,5 +44,7 @@ public class HealthManager : MonoBehaviour
     public static void addHealth(int amount)
     {
         playerHealth += amount;
+        itemSoundManager.soundMan.PlayKeyCollectSound();
+
     }
 }
