@@ -11,9 +11,9 @@ public class ConeVision : MonoBehaviour
         // If the cone finds the player then alert that guard
         if (collision.tag == "Player")
         {
-            PlayerController player = collision.GetComponent<PlayerController>();
             parent.isAlerted = true;
         }
+        // If a dead guard is found alert the guards
         if (collision.tag == "DeadGuard")
         {
             // Alert all guards

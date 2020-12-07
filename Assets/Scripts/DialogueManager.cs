@@ -19,6 +19,7 @@ public class DialogueManager : MonoBehaviour
         onDialogue = false;
     }
 
+    //Starts the dialogue screen displaying the sentences
     public void StartDialogue(string[] sentences)
     {
         currentSentences = sentences;
@@ -27,6 +28,7 @@ public class DialogueManager : MonoBehaviour
         time.PauseTimer();
     }
 
+    //Incrementing throught the sentences
     public void Continue()
     {
         index++;
@@ -35,6 +37,8 @@ public class DialogueManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //When you can see the dialogue screen then you can skip using E
+        //Timer is paused during the dialogue screen
         if (onDialogue)
         {
             if (Input.GetKeyDown(KeyCode.E))
@@ -52,6 +56,7 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
+            //Dialogue is hidden and timer is unpaused
             dialogueScreen.SetActive(false);
             time.ResumeTimer();
         }

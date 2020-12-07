@@ -16,11 +16,13 @@ public class NPCManager : MonoBehaviour
         inTrigger = false;
     }
 
+    //Starts Dialogue is Player can talk to the NPC
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && inTrigger)
         {
             FindObjectOfType<DialogueManager>().StartDialogue(sentences);
+            //Some NPCs can damage the Player
             if (!damagedPlayer)
             {
                 HealthManager.damage(damage);
@@ -29,12 +31,14 @@ public class NPCManager : MonoBehaviour
         }
     }
 
+    //Checks if Player can talk to the NPC
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Player")
             inTrigger = true;
     }
 
+    //Checks if Player cannot talk to the NPC
     private void OnTriggerExit2D(Collider2D collision)
     {
         if(collision.tag == "Player")
