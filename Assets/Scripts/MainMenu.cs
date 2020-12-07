@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
     private string loadLevel;
     public int startHealth;
 
+    //Starts a fresh game with score and health reset
     public void PlayGame()
     {
         PlayerPrefs.DeleteAll();
@@ -18,6 +19,7 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(startLevel);
     }
 
+    //Loads game with previous score and health
     public void LoadLevel()
     {
         if (PlayerPrefs.HasKey("Level"))
@@ -27,11 +29,13 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    //Loads control menu
     public void HowToPlay()
     {
         SceneManager.LoadScene("Controls");
     }
 
+    //Exits the game
     public void ExitGame()
     {
         Application.Quit();

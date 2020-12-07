@@ -10,6 +10,7 @@ public class AudioAdjustment : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Checks if there is a Volume preset and set the volume
         if (PlayerPrefs.HasKey("Music"))
         {
             musicVolume = PlayerPrefs.GetFloat("Music");
@@ -21,12 +22,13 @@ public class AudioAdjustment : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    //Changes the volume of the music
     void Update()
     {
         backgroundMusic.volume = musicVolume;
     }
 
+    //Called when slider is moved
     public void updateMusic(float newVolume)
     {
         musicVolume = newVolume;

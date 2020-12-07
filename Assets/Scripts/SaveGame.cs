@@ -11,8 +11,10 @@ public class SaveGame : MonoBehaviour
     public Text score;
     public PauseMenu pause;
 
+    //Checks if Player reaches the end of the level
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //Adds the points and Saves the values
         if(collision.tag == "Player")
         {
             pause.Pause();
@@ -24,11 +26,13 @@ public class SaveGame : MonoBehaviour
         }
     }
 
+    //Loads in the next level when button pressed
     public void loadNextLevel()
     {
         SceneManager.LoadScene(nextLevel);
     }
 
+    //Saves the value when entered the trigger
     public void Save()
     {
         PlayerPrefs.DeleteAll();
