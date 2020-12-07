@@ -12,8 +12,10 @@ public class GuardBack : MonoBehaviour
 
     void Update()
     {
+        //Adds the death particle when the Player attacks the Guard and adds Points
         if (attackable)
         {
+            //Checks if the attack key has been pressed
             if (Input.GetKeyDown(KeyCode.R) && !parent.isDead)
             {
                 parent.isDead = true;
@@ -27,12 +29,14 @@ public class GuardBack : MonoBehaviour
         }
     }
 
+    //Makes it so the Player can attack the Guard
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Player")
             attackable = true;
     }
 
+    //Makes it so the Player can no longer attack the Guard
     private void OnTriggerExit2D(Collider2D collision)
     {
         attackable = false;

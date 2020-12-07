@@ -17,19 +17,22 @@ public class TimerController : MonoBehaviour
         textTime = GetComponent<Text>();
     }
 
+    //Pauses the Timer when talking to NPCs
     public void PauseTimer()
     {
         pausedTimer = true;
     }
 
+    //Resumes the Timer once finished talking to NPCs
     public void ResumeTimer()
     {
         pausedTimer = false;
     }
 
-    // Update is called once per frame
+    //Updates the Timer on the HUD
     void FixedUpdate()
     {
+        //Checks if timer is paused
         if (!pausedTimer)
             time -= Time.deltaTime;
         if(time < 0)
@@ -41,6 +44,7 @@ public class TimerController : MonoBehaviour
         publicTime = time;
     }
 
+    //Returns the int of the time for the score added at the level exit
     public static int getTime()
     {
         return (int)publicTime;

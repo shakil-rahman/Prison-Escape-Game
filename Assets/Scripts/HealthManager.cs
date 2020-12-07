@@ -18,9 +18,10 @@ public class HealthManager : MonoBehaviour
         playerHealth = PlayerPrefs.GetInt("Health");
     }
 
-    // Update is called once per frame
+    //Updates the Players health on the HUD
     void Update()
     {
+        //When they die the Game Over screen is displayed and save is lost
         if (playerHealth <= 0)
         {
             playerHealth = 0;
@@ -32,12 +33,14 @@ public class HealthManager : MonoBehaviour
         textHealth.text = "" + playerHealth;
     }
 
+    //Takes health away from Player and plays sound
     public static void damage(int amount)
     {
         playerHealth -= amount;
         itemSoundManager.soundMan.PlayPunchSound();
     }
 
+    //Increases the Players health
     public static void addHealth(int amount)
     {
         playerHealth += amount;

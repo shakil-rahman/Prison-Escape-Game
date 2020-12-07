@@ -15,7 +15,7 @@ public class ScoreManager : MonoBehaviour
         score = PlayerPrefs.GetInt("Score");
     }
 
-    // Update is called once per frame
+    //Displays the score on the HUD
     void Update()
     {
         if (score < 0)
@@ -25,6 +25,7 @@ public class ScoreManager : MonoBehaviour
         textScore.text = "" + score;
     }
 
+    //Adds points to the score
     public static void addPoints(int points)
     {
         score += points;

@@ -12,7 +12,7 @@ public class DestroyParticle : MonoBehaviour
         particleSystem = GetComponent<ParticleSystem>();
     }
 
-    // Update is called once per frame
+    //Lets the whole particle effect occur
     void Update()
     {
         if (particleSystem.isPlaying)
@@ -22,6 +22,7 @@ public class DestroyParticle : MonoBehaviour
         Destroy(gameObject);
     }
 
+    //Check particle effect has completed
     void OnBecameInvisible()
     {
         Destroy(gameObject);    

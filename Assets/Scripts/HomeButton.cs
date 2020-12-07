@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class HomeButton : MonoBehaviour
 {
+    //Returns to main menu when pressed
     public void home()
     {
         SceneManager.LoadScene("Main Menu");
