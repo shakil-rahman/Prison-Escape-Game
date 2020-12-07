@@ -5640,7 +5640,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenu: Main Menu
-  currentLevel: Level 1
+  currentLevel: Level 2
   isPaused: 0
   pauseMenu: {fileID: 474954041}
 --- !u!4 &960377687
