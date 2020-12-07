@@ -424,8 +424,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sentences:
-  - This is my first sentence
-  - This is my second sentence
+  - Here's a little secret, between you and me...
+  - The exit key should be in the blue room.
   damage: 0
 --- !u!1 &67905698
 GameObject:
