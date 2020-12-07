@@ -14,7 +14,7 @@ public class Waypoint : MonoBehaviour
     void Start()
     {
         directionsAllowed = new List<Vector2>();
-
+        // Add possible directions to arraylist
         if (up){directionsAllowed.Add(new Vector2(0f, 1f));}
         if (down){directionsAllowed.Add(new Vector2(0f, -1f));}
         if (left){directionsAllowed.Add(new Vector2(-1f, 0f));}

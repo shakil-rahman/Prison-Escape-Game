@@ -10,6 +10,7 @@ public class GuardAttack : MonoBehaviour
     private IEnumerator coroutine;
     private bool damaging = false;
 
+    // Attack player if alerted and not dead
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (parent.isAlerted && collision.tag == "Player" && !parent.isDead)

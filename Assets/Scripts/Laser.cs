@@ -21,6 +21,8 @@ public class Laser : MonoBehaviour
 
     void Start()
     {
+        // Determine how long the laser is active
+        // Done at start for consistency within level
         activeLength = Random.Range(2, 8);
     }
 
@@ -28,10 +30,13 @@ public class Laser : MonoBehaviour
     void Update()
     {
         timeGap += Time.fixedDeltaTime;
+        // Check if laser has been active long enough
         if(timeGap > activeLength)
         {
+            // Check if laser was inactive for long enough
             if(timeGap > (activeLength + waitLength))
             {
+                // Re-enable laser
                 timeGap = 0;
                 isActive = true;
                 laser.GetComponent<Renderer>().enabled = true;
@@ -39,6 +44,7 @@ public class Laser : MonoBehaviour
             }
             else
             {
+                // Disable laser
                 isActive = false;
                 laser.GetComponent<Renderer>().enabled = false;
                 laserLight.SetActive(false);

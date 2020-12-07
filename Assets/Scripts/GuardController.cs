@@ -8,18 +8,20 @@ public class GuardController : MonoBehaviour
     // Reference to pathfinder
     public AIPath path;
 
-    // Variables for movement and animation
+    // References to objects
     public Rigidbody2D rb;
     public Animator anim;
     public Transform cone;
     public Transform back;
+    // Variables for movement and animation
     public float speedX;
     public float speedY;
     private float oldSpeedX;
     private float oldSpeedY;
     public float moveSpeed = 3f;
-
     private bool directionChanged;
+
+    // Guard status
     public bool isDead;
     public bool isAlerted;
 
@@ -31,6 +33,7 @@ public class GuardController : MonoBehaviour
     // Vector to store movement
     private Vector2 movement;
 
+    // Make sure guard is alive and not alerted at level start
     void Start()
     {
         isDead = false;
@@ -91,6 +94,7 @@ public class GuardController : MonoBehaviour
 
     }
 
+    // Remember previous direction
     public void changeDirection(Vector2 newDir)
     {
         oldSpeedX = speedX;
@@ -100,6 +104,7 @@ public class GuardController : MonoBehaviour
         directionChanged = true;
     }
 
+    // Re-align cone/back
     public void stopMovement()
     {
         Vector2 guardLoc = gameObject.transform.position;
@@ -140,25 +145,33 @@ public class GuardController : MonoBehaviour
         {
             stopMovement();
 
-            if (speedX > 0){
+            // Make cone face right if heading right
+            if (speedX > 0)
+            {
                 cone.position = new Vector3(guardLoc.x + 2, guardLoc.y, 0);
                 cone.rotation = Quaternion.Euler(Vector3.forward * 0);
                 back.position = new Vector3(guardLoc.x + 2, guardLoc.y, 0);
                 back.rotation = Quaternion.Euler(Vector3.forward * 0);
             }
-            else if (speedX < 0){
+            // Make cone face left if heading left
+            else if (speedX < 0)
+            {
                 cone.position = new Vector3(guardLoc.x - 2, guardLoc.y, 0);
                 cone.rotation = Quaternion.Euler(Vector3.forward * 180);
                 back.position = new Vector3(guardLoc.x - 2, guardLoc.y, 0);
                 back.rotation = Quaternion.Euler(Vector3.forward * 180);
             }
-            else if (speedY > 0){
+            // Make cone face up if heading up
+            else if (speedY > 0)
+            {
                 cone.position = new Vector3(guardLoc.x, guardLoc.y + 2, 0);
                 cone.rotation = Quaternion.Euler(Vector3.forward * 90);
                 back.position = new Vector3(guardLoc.x, guardLoc.y + 2, 0);
                 back.rotation = Quaternion.Euler(Vector3.forward * 90);
             }
-            else if (speedY < 0){
+            // Make cone face down if heading down
+            else if (speedY < 0)
+            {
                 cone.position = new Vector3(guardLoc.x, guardLoc.y - 2, 0);
                 cone.rotation = Quaternion.Euler(Vector3.forward * -90);
                 back.position = new Vector3(guardLoc.x, guardLoc.y - 2, 0);
